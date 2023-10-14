@@ -1,3 +1,0 @@
-# Arduino
-
-Reposiório Arduino

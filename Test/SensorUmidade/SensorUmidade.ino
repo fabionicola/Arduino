@@ -10,6 +10,7 @@ void setup() {
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
   pinMode(sensor, INPUT);
+  pinMode(bomba, OUTPUT);
   digitalWrite(bomba, LOW);
 
 }
@@ -18,16 +19,18 @@ void loop() {
   umd = analogRead(sensor);
 
   if (umd > 0 && umd < 800){
-    digitalWrite(led1, HIGH);
-    digitalWrite(led2, LOW);
+    digitalWrite(led2, HIGH);
+    digitalWrite(led1, LOW);
     digitalWrite(bomba, LOW);
   }
 
   if (umd > 800 && umd < 1024){
-    digitalWrite(led1, LOW);
-    digitalWrite(led2, HIGH);
+    digitalWrite(led2, LOW);
+    digitalWrite(led1, HIGH);
     digitalWrite(bomba, HIGH);
 
   }
   delay(100);
+  
+  
 }

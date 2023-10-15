@@ -8,8 +8,7 @@
 Servo s; //Variável do servo
 int pos = 0; //variável da posição
 
-void ctrlLed1();
-void ctrlLed2();
+void ctrlLed();
 void servo();
 
 void setup() {
@@ -28,43 +27,38 @@ void setup() {
 
 void loop() {
 
-  ctrlLed1();
-  ctrlLed1();
+  ctrlLed();
   servo();
 
 }
 
-void ctrlLed1() {
+void ctrlLed() {
   static unsigned long espera;
 
   if ( (millis() - espera) < 500){
     digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
     }else{
     digitalWrite(led1, LOW);
+    digitalWrite(led2, HIGH);
   }
   if ((millis() - espera) >= 1000){
     espera = millis();
   }
 }
 
-void ctrlLed2() {
+void servo() {
   static unsigned long espera;
 
   if ( (millis() - espera) < 1000){
-    digitalWrite(led1, HIGH);
+     pos = 90;
+     s.write(pos);
     }else{
-    digitalWrite(led1, LOW);
+    pos = 0;
+    s.write(pos);
   }
-  if ((millis() - espera) >= 1500){
+  if ((millis() - espera) >= 3000){
     espera = millis();
   }
 }
 
-void servo(){
-  pos = 90;
-  s.write(pos);
-  delay(1000);
-  pos = 0;
-  s.write(pos);
-  delay(1000);
-}

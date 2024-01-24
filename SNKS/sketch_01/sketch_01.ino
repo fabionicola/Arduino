@@ -1,17 +1,17 @@
 //define portas de saida de solenoides conectadas
-  #define horta 2
-  #define frente 2
-  #define fundo 4
+  #define horta 8
+  #define frente 9
+  #define fundo 10
 
 //define portas de saida dos botões
-  #define btn_escolhe 5
-  #define btn_teste 6
-  #define btn_irriga 7
+  #define btn_escolhe 3
+  #define btn_teste 4
+  #define btn_irriga 2
 
 //leds
-  #define led_horta 8
-  #define led_frente 9
-  #define led_fundo 10
+  #define led_horta 5
+  #define led_frente 6
+  #define led_fundo 7
 
 //variáveis
   int tempo_irrigacao = 90000;
@@ -37,9 +37,9 @@ void setup() {
   
   //config de iniciação
 
-    digitalWrite(horta, LOW);
-    digitalWrite(frente, LOW);
-    digitalWrite(fundo, LOW);
+    digitalWrite(horta, HIGH);
+    digitalWrite(frente, HIGH);
+    digitalWrite(fundo, HIGH);
     digitalWrite(led_horta, LOW);
     digitalWrite(led_frente, LOW);
     digitalWrite(led_fundo, LOW);
@@ -50,14 +50,17 @@ void loop() {
   
  if (digitalRead(btn_escolhe) == HIGH)
  {
+  Serial.begin("btn_escolhe");
   ascender_led();
  }
  if (digitalRead(btn_irriga) == HIGH)
  {
+  Serial.begin("btn_irriga");
   irrigar();
  }
  if (digitalRead(btn_teste) == HIGH)
  {
+  Serial.begin("btn_teste");
   irrigar_tudo(tempo_teste);
  }
   
@@ -170,39 +173,37 @@ void irrigar(){
 
 void irrigar_tudo(int tempo){
   pisca_leds();
-  digitalWrite(horta, HIGH);
-  delay(tempo);
   digitalWrite(horta, LOW);
-  digitalWrite(frente, HIGH);
   delay(tempo);
-  digitalWrite(frente, LOW);
-  digitalWrite(fundo, HIGH);
-  delay(tempo);
-  digitalWrite(fundo, LOW);
   digitalWrite(horta, HIGH);
-  delay(tempo);
-  digitalWrite(horta, LOW);
-  digitalWrite(frente, HIGH);
-  delay(tempo);
   digitalWrite(frente, LOW);
-  digitalWrite(fundo, HIGH);
   delay(tempo);
+  digitalWrite(frente, HIGH);
   digitalWrite(fundo, LOW);
+  delay(tempo);
+  digitalWrite(fundo, HIGH);
+  digitalWrite(horta, LOW);
+  delay(tempo);
   digitalWrite(horta, HIGH);
-  delay(tempo);
-  digitalWrite(horta, LOW);
-  digitalWrite(frente, HIGH);
-  delay(tempo);
   digitalWrite(frente, LOW);
-  digitalWrite(fundo, HIGH);
   delay(tempo);
+  digitalWrite(frente, HIGH);
   digitalWrite(fundo, LOW);
+  delay(tempo);
+  digitalWrite(fundo, HIGH);
+  digitalWrite(horta, LOW);
+  delay(tempo);
+  digitalWrite(horta, HIGH);
+  digitalWrite(frente, LOW);
+  delay(tempo);
+  digitalWrite(frente, HIGH);
+  digitalWrite(fundo, LOW);
+  delay(tempo);
+  digitalWrite(fundo, HIGH);
   apaga_leds();
 }
 
 void irrigar_setor(short setor, int tempo){
-  digitalWrite(setor, HIGH);
-  delay(tempo);
   digitalWrite(setor, LOW);
   delay(tempo);
   digitalWrite(setor, HIGH);
@@ -212,6 +213,8 @@ void irrigar_setor(short setor, int tempo){
   digitalWrite(setor, HIGH);
   delay(tempo);
   digitalWrite(setor, LOW);
+  delay(tempo);
+  digitalWrite(setor, HIGH);
   delay(tempo);
   apaga_leds();
 }

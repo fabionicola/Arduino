@@ -1,0 +1,7 @@
+{
+    "sketch": "sketch_01\\sketch_01.ino",
+    "port": "COM13",
+    "configuration": "cpu=atmega328",
+    "board": "arduino:avr:nano",
+    "programmer": "avrispmkii"
+}

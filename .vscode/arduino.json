@@ -1,0 +1,7 @@
+{
+    "configuration": "cpu=atmega328old",
+    "board": "arduino:avr:nano",
+    "programmer": "avrispmkii",
+    "port": "COM13",
+    "sketch": "btn\\btn\\btn.ino"
+}
